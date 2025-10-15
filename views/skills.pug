@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  .row
+    .col-12.text-center.mb-3
+      h2(style='font-family:Playfair Display, serif; color:#d63384') Skills & Education
+  form(method='post', action='/skills')
+    .row
+      .col-md-6
+        h4 Skills
+        .mb-3
+          label.form-label Enter skills (comma separated)
+          input.form-control(type='text', name='skills_text', value=(data.skills && data.skills.text) || '')
+        .mb-3
+          label.form-label Common skills
+          each s in ['HTML','CSS','JavaScript','Node.js','Python','SQL']
+            .form-check
+              - var checked = data.skills && data.skills.checks && data.skills.checks.indexOf(s) !== -1
+              input.form-check-input(type='checkbox', name='skills_check', value=s, id='sk-'+s checked=checked)
+              label.form-check-label(for='sk-'+s)= s
+      .col-md-6
+        h4 Education Details
+        each idx, level in [['1','10th'],['2','Intermediate'],['3','Graduation']]
+          .card.mb-3.p-3
+            input(type='hidden', name='edu_level', value=level)
+            .mb-2
+              label.form-label Institution / School / College
+              input.form-control(type='text', name='edu_institution', value=(data.education && data.education[idx-1] && data.education[idx-1].institution) || '')
+            .mb-2
+              label.form-label Board / University
+              input.form-control(type='text', name='edu_board', value=(data.education && data.education[idx-1] && data.education[idx-1].board) || '')
+            .row
+              .col-6
+                label.form-label Passing Year
+                input.form-control(type='text', name='edu_year', value=(data.education && data.education[idx-1] && data.education[idx-1].year) || '')
+              .col-6
+                label.form-label Percentage / GPA
+                input.form-control(type='text', name='edu_percentage', value=(data.education && data.education[idx-1] && data.education[idx-1].percentage) || '')
+    .row.mt-4
+      .col-12.text-end
+        button.btn.btn-pink(type='submit') Next →

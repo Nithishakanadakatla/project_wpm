@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .row
+    .col-12.text-center.mb-4
+      h1.display-3(style='font-family:Playfair Display, serif; color: #d63384; font-weight:800;') Personal Portfolio Website
+      p.lead Enter your personal details to begin.
+  form(method='post', action='/personal', enctype='multipart/form-data')
+    .row
+      .col-md-8
+        .mb-3
+          label.form-label(for='full_name') Full Name
+          input.form-control(type='text',id='full_name',name='full_name',required value=(data.personal && data.personal.full_name) || '')
+        .mb-3
+          label.form-label(for='father_name') Father's Name
+          input.form-control(type='text',id='father_name',name='father_name' value=(data.personal && data.personal.father_name) || '')
+        .mb-3
+          label.form-label(for='mother_name') Mother's Name
+          input.form-control(type='text',id='mother_name',name='mother_name' value=(data.personal && data.personal.mother_name) || '')
+        .mb-3
+          label.form-label(for='address') Address
+          textarea.form-control(id='address',name='address') #{(data.personal && data.personal.address) || ''}
+      .col-md-4
+        .mb-3
+          label.form-label Upload Profile Photo (temporary)
+          input.form-control(type='file',name='photo',accept='image/*')
+        if data.personal && data.personal.photo
+          img.mt-3.rounded-circle(src=data.personal.photo, alt='photo', width='160', height='160')
+        else
+          img.mt-3.rounded-circle(src='/images/avatar-placeholder.png', alt='photo', width='160', height='160')
+    .row.mt-4
+      .col-12.text-end
+        button.btn.btn-pink(type='submit') Next →

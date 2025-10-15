@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .row
+    .col-12.text-center.mb-3
+      h2(style='font-family:Playfair Display, serif; color:#d63384') Projects
+  form(id='projectsForm', method='post', action='/projects', enctype='multipart/form-data')
+    #projects-container
+      .project-block.mb-3
+        .mb-2
+          label.form-label Project Description
+          textarea.form-control(name='project_desc') 
+        .mb-2
+          label.form-label Upload Project File (PDF / Image)
+          input.form-control(type='file', name='project_files', accept='.pdf,image/*')
+    .row.mt-3
+      .col-6
+        button.btn.btn-outline-secondary(type='button', id='addProject') + Add Another Project
+      .col-6.text-end
+        button.btn.btn-pink(type='submit') Next →
+
+  script.
+    document.getElementById('addProject').addEventListener('click', function(){
+      var container = document.getElementById('projects-container');
+      var block = document.createElement('div');
+      block.className = 'project-block mb-3';
+      block.innerHTML = "<div class='mb-2'><label class='form-label'>Project Description</label><textarea class='form-control' name='project_desc'></textarea></div><div class='mb-2'><label class='form-label'>Upload Project File (PDF / Image)</label><input class='form-control' type='file' name='project_files' accept='.pdf,image/*'></div>";
+      container.appendChild(block);
+    });

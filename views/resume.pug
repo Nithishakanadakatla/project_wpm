@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  .row
+    .col-12.text-center.mb-3
+      h2(style='font-family:Playfair Display, serif; color:#d63384') Resume Preview
+  .row
+    .col-md-8
+      .card.p-4#resume-card
+        .d-flex.align-items-center.mb-3
+          if data.personal && data.personal.photo
+            img.rounded-circle.me-3(src=data.personal.photo, width='120', height='120')
+          if data.personal
+            .personal-info
+              p Name: #{data.personal.full_name}
+              p Father Name: #{data.personal.father_name}
+              p Mother Name: #{data.personal.mother_name}
+              p Address: #{data.personal.address}
+        hr
+        if data.skills
+          h5 Skills
+          if data.skills.checks && data.skills.checks.length
+            ul
+              each s in data.skills.checks
+                li= s
+          if data.skills.text
+            p= data.skills.text
+        if data.education && data.education.length
+          h5.mt-3 Education
+          table.table.table-bordered
+            thead(style='background:#ffd6e8')
+              tr
+                th S.No
+                th Institution / Board
+                th Level
+                th Passing Year
+                th Percentage
+            tbody
+              each ed, i in data.education
+                tr
+                  td= i+1
+                  td= ed.institution
+                  td= ed.level
+                  td= ed.year
+                  td= ed.percentage
+        if data.projects && data.projects.length
+          h5.mt-3 Projects
+          each p, idx in data.projects
+            .d-flex.align-items-center.mb-2
+              input.form-check-input(type='checkbox', id='proj-'+idx)
+              label.ms-2(for='proj-'+idx)= p.originalname
+              if p.data
+                a.btn.btn-sm.btn-outline-primary.ms-3(href=p.data, target='_blank') Open
+    .col-md-4
+      .card.p-3
+        h5 Actions
+        a.btn.btn-outline-pink.mb-3(href='/download-pdf', target='_blank') Download Resume as PDF
+        form(method='post', action='/finish')
+          button.btn.btn-success(type='submit') Finish →

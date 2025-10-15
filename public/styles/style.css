@@ -1,0 +1,17 @@
+:root{--pink:#ffd6e8;--accent:#d63384;--white:#ffffff;}body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,var(--pink),var(--white));min-height:100vh;padding-bottom:60px;}.brand-title{font-family:'Playfair Display',serif;font-weight:800;color:var(--accent);font-size:1.6rem;}.btn-pink{background:linear-gradient(90deg,var(--accent),#ff6fa3);color:white;border:none;}.card{box-shadow:0 6px 18px rgba(214,51,132,0.12);border-radius:12px;}.rounded-circle{object-fit:cover;}.table-bordered td, .table-bordered th{vertical-align:middle;}.personal-info h3,
+.personal-info p {
+ color: #12020a;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif; /* Use regular font */
+  font-weight: 400;
+}.btn-outline-pink {
+  color: #d63384;
+  border: 1.5px solid #d63384;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline-pink:hover {
+  background: #d63384;
+  color: #fff;
+}

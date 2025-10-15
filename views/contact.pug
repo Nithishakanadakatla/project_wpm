@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .row
+    .col-12.text-center.mb-3
+      h2(style='font-family:Playfair Display, serif; color:#d63384') Contact
+  form(method='post', action='/contact')
+    .mb-3
+      label.form-label Phone
+      input.form-control(type='text', name='phone', value=(data.contact && data.contact.phone) || '')
+    .mb-3
+      label.form-label Email
+      input.form-control(type='email', name='email', value=(data.contact && data.contact.email) || '')
+    .mb-3
+      label.form-label LinkedIn
+      input.form-control(type='text', name='linkedin', value=(data.contact && data.contact.linkedin) || '')
+    .mb-3
+      label.form-label GitHub
+      input.form-control(type='text', name='github', value=(data.contact && data.contact.github) || '')
+    .row.mt-4
+      .col-12.text-end
+        button.btn.btn-pink(type='submit') Next →
